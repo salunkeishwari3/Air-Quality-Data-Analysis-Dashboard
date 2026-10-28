@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef5f9;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 { color: #123b52; }
+        .card {
+            background: white;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #bbb;
+        }
+        input, button {
+            padding: 12px;
+            margin: 8px;
+            border-radius: 6px;
+        }
+        button {
+            background: #087f8c;
+            color: white;
+            border: none;
+        }
+        #result { font-size: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Air Quality Dashboard</h1>
+    <p>Check the Air Quality Index (AQI)</p>
+
+    <div class="card">
+        <h2>Enter AQI Value</h2>
+        <input type="number" id="aqi" placeholder="Enter AQI (0-500)">
+        <button onclick="checkAQI()">Check Air Quality</button>
+        <p id="result">Your result will appear here.</p>
+    </div>
+
+    <script>
+        function checkAQI() {
+            let aqi = Number(document.getElementById("aqi").value);
+            let result = document.getElementById("result");
+
+            if (document.getElementById("aqi").value === "" || aqi < 0 || aqi > 500) {
+                result.textContent = "Please enter an AQI from 0 to 500.";
+            } else if (aqi <= 50) {
+                result.textContent = "Good air quality";
+            } else if (aqi <= 100) {
+                result.textContent = "Moderate air quality";
+            } else if (aqi <= 150) {
+                result.textContent = "Unhealthy for sensitive groups";
+            } else if (aqi <= 200) {
+                result.textContent = "Unhealthy air quality";
+            } else if (aqi <= 300) {
+                result.textContent = "Very unhealthy air quality";
+            } else {
+                result.textContent = "Hazardous air quality";
+            }
+        }
+    </script>
+</body>
+</html>
